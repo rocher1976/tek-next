@@ -1,65 +1,128 @@
-import Image from "next/image";
+const services = [
+  {
+    title: "NUMÉRISATION",
+    description:
+      "Solutions numériques taillées sur mesure pour répondre aux besoins spécifiques de nos clients et améliorer leurs services.",
+    image: "/images/matrix-2953869_1280.jpg",
+    alt: "Solutions numériques et technologies",
+    href: "/services/#numerisation",
+  },
+  {
+    title: "CONSEIL",
+    description:
+      "Accompagnement expert dans les méandres de l'administration congolaise via des partenariats locaux stratégiques.",
+    image: "/images/signature-962359_1280.jpg",
+    alt: "Services de conseil et accompagnement stratégique",
+    href: "/services/#conseil",
+  },
+  {
+    title: "SOUS-TRAITANCE",
+    description:
+      "Sous-traitance dans le secteur minier, ainsi que partenariats d'évacuation de remblais des sites identifiés.",
+    image: "/images/mining-equipments-440743_1280.jpg",
+    alt: "Services de sous-traitance dans le secteur minier",
+    href: "/services/#sous-traitance",
+  },
+];
 
-export default function Home() {
+export default function HomePage() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <main id="main-content">
+        <section
+          className="hero-section hero-mining"
+          aria-labelledby="hero-title"
+        >
+          <div className="hero-overlay">
+            <h1 className="hero-title" id="hero-title">
+              TEK COMMUNICATION
+            </h1>
+            <div className="hero-underline" aria-hidden="true" />
+          </div>
+        </section>
+
+        <section className="tagline-section">
+          <h2 className="tagline">
+            Connecter les marchés mondiaux aux opportunités locales
+          </h2>
+        </section>
+
+        <section
+          className="about-intro-section"
+          aria-labelledby="about-heading"
+        >
+          <div className="about-content">
+            <p className="about-text">
+              Tek Communication agit comme un pont stratégique entre les
+              fournisseurs internationaux et le dynamisme du secteur minier
+              congolais, ainsi que d&apos;autres marchés émergents. Grâce à une
+              expertise locale approfondie et une connaissance fine des réalités
+              opérationnelles, nous accompagnons nos partenaires dans leur
+              développement en naviguant avec rigueur et agilité dans un
+              environnement complexe et en constante évolution.
+              <br />
+              Notre approche repose sur une compréhension globale des enjeux
+              économiques, réglementaires et culturels propres à chaque région.
+              En proposant des solutions sur mesure et en favorisant des
+              partenariats durables, Tek Communication contribue activement à la
+              compétitivité, à la croissance responsable et à la réussite de ses
+              partenaires.
+            </p>
+            <a href="/a-propos" className="service-button">
+              En savoir plus
+            </a>
+          </div>
+        </section>
+
+        <section
+          className="services-section gallery-section"
+          aria-labelledby="services-heading"
+        >
+          <div className="container">
+            <div className="services-grid" role="list">
+              {services.map((service) => (
+                <article className="service-card" role="listitem" key={service.title}>
+                  <figure className="service-image">
+                    <img src={service.image} alt={service.alt} loading="lazy" />
+                  </figure>
+                  <h3 className="service-title">{service.title}</h3>
+                  <p className="service-description">{service.description}</p>
+                  <a href={service.href} className="service-button">
+                    EN SAVOIR PLUS
+                  </a>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="office-section">
+          <div className="container">
+            <figure>
+              <img
+                src="/images/boardroom-table-5585970_1280.jpg"
+                alt="Espace de bureau moderne et professionnel"
+                className="office-image"
+                loading="lazy"
+              />
+              <a href="/contact" className="cta-button">
+                COMMENÇONS LA CONVERSATION
+              </a>
+            </figure>
+          </div>
+        </section>
+      </main>
+
+      <footer className="footer" role="contentinfo">
+        <div className="container">
+          <p className="copyright">
+            © <span className="copyright-year">{currentYear}</span> Tek
+            Communication Sarl. Tous droits réservés.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </footer>
+    </>
   );
 }
