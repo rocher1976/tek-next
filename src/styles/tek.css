@@ -285,7 +285,7 @@ body {
 }
 
 .hero-underline {
-  margin-top: 0.75rem;
+  margin-top: 5px;
   width: clamp(140px, 32vw, 360px);
   height: 6px;
   background: var(--primary-blue);
