@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const defaultServices = [
   { value: "", label: "Sélectionnez un service" },
@@ -24,8 +24,25 @@ const ContactForm = ({ services = defaultServices }) => {
   const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [fieldErrors, setFieldErrors] = useState({});
+  const [toast, setToast] = useState(null);
+  const [isToastClosing, setIsToastClosing] = useState(false);
 
   const isLoading = status === "loading";
+
+  // Auto-hide toast after 5 seconds
+  useEffect(() => {
+    if (toast) {
+      setIsToastClosing(false);
+      const timer = setTimeout(() => {
+        setIsToastClosing(true);
+        setTimeout(() => {
+          setToast(null);
+          setIsToastClosing(false);
+        }, 300); // Match animation duration
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -85,38 +102,41 @@ const ContactForm = ({ services = defaultServices }) => {
 
       setStatus("success");
       setFormData(initialFormState);
+      setToast({
+        type: "success",
+        message: "Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.",
+      });
     } catch (error) {
       setStatus("error");
-      setErrorMessage(
+      const errorMsg =
         error?.message ??
-          "Une erreur inattendue est survenue. Veuillez réessayer."
-      );
+        "Une erreur inattendue est survenue. Veuillez réessayer.";
+      setErrorMessage(errorMsg);
+      setToast({
+        type: "error",
+        message: errorMsg,
+      });
     }
   };
 
-  const showSuccess = status === "success";
-  const showError = status === "error" && errorMessage;
-
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="contact-form"
-      id="contact-form"
-      aria-label="Formulaire de contact"
-      noValidate
-    >
-      {showSuccess && (
-        <div className="form-success" role="status" tabIndex={-1}>
-          Merci pour votre message ! Nous vous répondrons dans les plus brefs
-          délais.
+    <>
+      {toast && (
+        <div
+          className={`toast toast-${toast.type}${isToastClosing ? " closing" : ""}`}
+          role={toast.type === "error" ? "alert" : "status"}
+          aria-live="polite"
+        >
+          {toast.message}
         </div>
       )}
-
-      {showError && (
-        <div className="form-error" role="alert">
-          {errorMessage}
-        </div>
-      )}
+      <form
+        onSubmit={handleSubmit}
+        className="contact-form"
+        id="contact-form"
+        aria-label="Formulaire de contact"
+        noValidate
+      >
 
       <div className="form-group">
         <label htmlFor="name">
@@ -226,6 +246,7 @@ const ContactForm = ({ services = defaultServices }) => {
         {isLoading ? "Envoi en cours..." : "ENVOYER"}
       </button>
     </form>
+    </>
   );
 };
 
