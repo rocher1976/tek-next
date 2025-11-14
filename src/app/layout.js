@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Tek Communication",
   description: "Connecter les marchés mondiaux aux opportunités locales en République Démocratique du Congo dans le secteur minier, ainsi que dand les nouvelles technologies.",
+  icons: {
+    icon: "/tek-favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
