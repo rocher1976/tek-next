@@ -712,6 +712,12 @@ body {
   color: var(--dark-text);
 }
 
+.form-group label .char-limit {
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--text-gray);
+}
+
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -742,6 +748,14 @@ body {
 
 .form-group textarea {
   resize: vertical;
+}
+
+.char-counter {
+  text-align: right;
+  font-size: 12px;
+  color: var(--text-gray);
+  margin-top: 4px;
+  padding-right: 4px;
 }
 
 .cta-button-red[disabled] {

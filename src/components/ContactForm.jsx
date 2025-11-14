@@ -44,13 +44,56 @@ const ContactForm = ({ services = defaultServices }) => {
     }
   }, [toast]);
 
+  const validateField = (name, value) => {
+    switch (name) {
+      case "phone":
+        // Numbers only (allow spaces, dashes, parentheses, plus sign for international)
+        return !value || /^[\d\s\-\+\(\)]+$/.test(value);
+      case "email":
+        // Valid email format
+        if (!value) return true; // Email is optional
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      case "name":
+        return value.length <= 20;
+      case "company":
+        return value.length <= 40;
+      case "message":
+        return value.length <= 200;
+      default:
+        return true;
+    }
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
+    
+    // For phone field, only allow numbers and common phone characters
+    if (name === "phone") {
+      // Allow only numbers, spaces, dashes, parentheses, and plus sign
+      if (value && !/^[\d\s\-\+\(\)]*$/.test(value)) {
+        return; // Don't update if invalid character
+      }
+    }
+    
+    // Enforce max length
+    const maxLengths = {
+      name: 20,
+      company: 40,
+      message: 200,
+    };
+    
+    if (maxLengths[name] && value.length > maxLengths[name]) {
+      return; // Don't update if exceeds max length
+    }
+    
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
-    setFieldErrors((prev) => ({ ...prev, [name]: false }));
+    
+    // Validate and update errors
+    const isValid = validateField(name, value);
+    setFieldErrors((prev) => ({ ...prev, [name]: !isValid }));
   };
 
   const handleSubmit = async (event) => {
@@ -65,18 +108,54 @@ const ContactForm = ({ services = defaultServices }) => {
       message: formData.message.trim(),
     };
 
+    // Validate all fields
     const newErrors = {};
-    if (!trimmedData.name) newErrors.name = true;
-    if (!trimmedData.email) newErrors.email = true;
-    if (!trimmedData.message) newErrors.message = true;
+    
+    // Required fields
+    if (!trimmedData.name) {
+      newErrors.name = true;
+    } else if (trimmedData.name.length > 20) {
+      newErrors.name = true;
+    }
+    
+    // Email validation - must be present and valid format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!trimmedData.email) {
+      newErrors.email = true;
+    } else if (!emailRegex.test(trimmedData.email.trim())) {
+      newErrors.email = true;
+    }
+    
+    if (!trimmedData.message) {
+      newErrors.message = true;
+    } else if (trimmedData.message.length > 200) {
+      newErrors.message = true;
+    }
+    
+    // Optional fields validation
+    if (trimmedData.phone && !/^[\d\s\-\+\(\)]+$/.test(trimmedData.phone)) {
+      newErrors.phone = true;
+    }
+    
+    if (trimmedData.company && trimmedData.company.length > 40) {
+      newErrors.company = true;
+    }
 
+    // Prevent form submission if there are any validation errors
     if (Object.keys(newErrors).length > 0) {
       setFieldErrors(newErrors);
       setStatus("error");
       setErrorMessage(
-        "Merci de remplir tous les champs obligatoires avant de soumettre le formulaire."
+        "Veuillez vérifier les champs du formulaire. Certains champs contiennent des erreurs."
       );
-      return;
+      // Show toast for email validation error specifically
+      if (newErrors.email) {
+        setToast({
+          type: "error",
+          message: "Veuillez entrer une adresse email valide.",
+        });
+      }
+      return; // Stop form submission
     }
 
     setStatus("loading");
@@ -149,6 +228,7 @@ const ContactForm = ({ services = defaultServices }) => {
           required
           aria-required="true"
           autoComplete="name"
+          maxLength={20}
           value={formData.name}
           onChange={handleChange}
           aria-invalid={fieldErrors.name ? "true" : undefined}
@@ -168,6 +248,7 @@ const ContactForm = ({ services = defaultServices }) => {
           required
           aria-required="true"
           autoComplete="email"
+          pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
           value={formData.email}
           onChange={handleChange}
           aria-invalid={fieldErrors.email ? "true" : undefined}
@@ -183,8 +264,11 @@ const ContactForm = ({ services = defaultServices }) => {
           id="phone"
           name="phone"
           autoComplete="tel"
+          pattern="[\d\s\-\+\(\)]+"
           value={formData.phone}
           onChange={handleChange}
+          aria-invalid={fieldErrors.phone ? "true" : undefined}
+          className={fieldErrors.phone ? "error" : undefined}
           disabled={isLoading}
         />
       </div>
@@ -196,8 +280,11 @@ const ContactForm = ({ services = defaultServices }) => {
           id="company"
           name="company"
           autoComplete="organization"
+          maxLength={40}
           value={formData.company}
           onChange={handleChange}
+          aria-invalid={fieldErrors.company ? "true" : undefined}
+          className={fieldErrors.company ? "error" : undefined}
           disabled={isLoading}
         />
       </div>
@@ -221,7 +308,7 @@ const ContactForm = ({ services = defaultServices }) => {
 
       <div className="form-group">
         <label htmlFor="message">
-          Message <span aria-label="requis">*</span>
+          Message <span aria-label="requis">*</span> <span className="char-limit">(200 caractères)</span>
         </label>
         <textarea
           id="message"
@@ -229,12 +316,16 @@ const ContactForm = ({ services = defaultServices }) => {
           rows={6}
           required
           aria-required="true"
+          maxLength={200}
           value={formData.message}
           onChange={handleChange}
           aria-invalid={fieldErrors.message ? "true" : undefined}
           className={fieldErrors.message ? "error" : undefined}
           disabled={isLoading}
         />
+        <div className="char-counter">
+          {formData.message.length}/200
+        </div>
       </div>
 
       <button
