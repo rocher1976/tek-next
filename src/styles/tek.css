@@ -1006,6 +1006,7 @@ body {
   .office-section .cta-button {
     width: min(88%, 280px);
     font-size: 14px;
+    padding: clamp(12px, 2vw, 18px) clamp(12px, 2vw, 18px);
   }
 
   .service-detail {
@@ -1036,6 +1037,10 @@ body {
   .service-button {
     padding: 12px 30px;
     font-size: 14px;
+  }
+
+  .office-section .cta-button {
+    padding: 12px 12px;
   }
 
   .service-card {
