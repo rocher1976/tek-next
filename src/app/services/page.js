@@ -93,7 +93,7 @@ export default function ServicesPage() {
               <p className="about-text">
                 Chez TEK COMMUNICATION, nous allons au-delà de la simple
                 sous-traitance minière pour offrir une gamme complète de
-                solutions technologiques de pointe. Notre mission est
+                solutions adaptées à vos besoins. Notre mission est
                 d&apos;optimiser l&apos;efficacité et de renforcer la sécurité de
                 vos opérations, quelle que soit la taille de votre entreprise.
               </p>

@@ -56,15 +56,15 @@ export default function HomePage() {
           <div className="about-content">
             <p className="about-text">
               Tek Communication agit comme un pont stratégique entre les
-              fournisseurs internationaux et le dynamisme du secteur minier
-              congolais, ainsi que d&apos;autres marchés émergents. Grâce à une
+              entités internationales et le dynamisme du secteur minier
+              congolais, ainsi que d&apos;autres secteurs d'intérêt nationaux. Grâce à une
               expertise locale approfondie et une connaissance fine des réalités
-              opérationnelles, nous accompagnons nos partenaires dans leur
+              du terrain, nous accompagnons nos partenaires dans leur
               développement en naviguant avec rigueur et agilité dans un
               environnement complexe et en constante évolution.
               <br />
               Notre approche repose sur une compréhension globale des enjeux
-              économiques, réglementaires et culturels propres à chaque région.
+              économiques, réglementaires et culturels propres à la République Démocratique du Congo.
               En proposant des solutions sur mesure et en favorisant des
               partenariats durables, Tek Communication contribue activement à la
               compétitivité, à la croissance responsable et à la réussite de ses

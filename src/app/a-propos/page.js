@@ -45,21 +45,19 @@ export default function AboutPage() {
                   Notre Identité
                 </h2>
                 <p className="service-detail-description">
-                  TEK COMMUNICATION SARL est une société de premier plan
-                  enregistrée en République Démocratique du Congo, positionnée
-                  comme un leader dans le secteur minier et les nouvelles
-                  technologies de télécommunications. Fondée dans l&apos;esprit
+                  TEK COMMUNICATION SARL est une société enregistrée en République Démocratique du Congo. 
+                  Fondée dans l&apos;esprit
                   de l&apos;entrepreneuriat congolais, notre entreprise incarne
                   la vision présidentielle de favoriser l&apos;émergence
-                  d&apos;une nouvelle génération de leaders d&apos;affaires au
+                  d&apos;une nouvelle génération de femmes et d&apos;hommes d&apos;affaires au
                   service de l&apos;économie nationale.
                 </p>
                 <p className="service-detail-description">
                   Basée à Lubumbashi, dans le Haut-Katanga, nous opérons
                   principalement dans la région du Grand Katanga pour nos
-                  activités minières, tout en déployant nos services à l&apos;échelle
-                  nationale dans nos autres secteurs. Notre présence
-                  internationale est renforcée par un bureau satellite à Londres,
+                  activités liées au secteur minier. Nous déployons aussi nos services à l&apos;échelle
+                  nationale dans d&apos;autres secteurs tels que l&apos;éducation, les nouvelles technologies de télécommunications, et l&apos;énergie. Notre présence
+                  internationale est renforcée par une société soeur du même nom à Londres,
                   enregistré conformément à la loi britannique, qui facilite nos
                   partenariats stratégiques et notre expansion globale.
                 </p>
@@ -86,7 +84,7 @@ export default function AboutPage() {
                   aussi vaste que les besoins du secteur minier en constante
                   évolution, fait de nous le partenaire idéal pour toute
                   entreprise, locale ou internationale, cherchant à opérer
-                  efficacement en RDC.
+                  efficacement en République Démocratique du Congo.
                 </p>
               </div>
               <figure className="service-detail-image">
