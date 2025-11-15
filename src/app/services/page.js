@@ -2,29 +2,15 @@ const heroImage = "/images/business-handshake-7768170_1280.jpg";
 
 const serviceSections = [
   {
-    id: "numerisation",
-    title: "SOLUTIONS DE TRANSFORMATION NUMÉRIQUE",
-    image: "/images/matrix-2953869_1280.jpg",
-    alt: "Solutions numériques et technologies",
-    description:
-      "Nous guidons votre entreprise vers l'avenir en modernisant vos processus grâce à des technologies innovantes.",
-    items: [
-      "Digitalisation de documents : Nous numérisons vos archives physiques pour un accès instantané, une recherche simplifiée et une sécurité accrue de vos données",
-      "Développement d'applications web : Nous concevons et développons des applications sur mesure, intuitives et performantes, pour répondre à vos besoins spécifiques (gestion interne, communication, e-commerce, etc.)",
-      "Solutions SaaS (Software as a Service) : Nous proposons des solutions logicielles hébergées qui vous permettent de bénéficier des dernières innovations technologiques sans investissements lourds en infrastructure",
-    ],
-    reverse: false,
-  },
-  {
     id: "conseil",
-    title: "SOLUTIONS POUR LE SECTEUR MINIER",
+    title: "CONSEIL",
     image: "/images/analysis-1841158_1280.jpg",
     alt: "Services de conseil et accompagnement stratégique",
     description:
-      "En tant que partenaires stratégiques, nous offrons une expertise ciblée pour les acteurs du secteur minier, de la gestion des ressources à la logistique.",
+      "Nous connectons les investisseurs internationaux avec des projets fiables et à fort potentiel dans les secteurs minier, des hydrocarbures et de l'énergie. Notre rôle est de bâtir la confiance et de créer des partenariats durables et mutuellement bénéfiques, fondés sur une valeur à long terme partagée.",
     items: [
-      "Valorisation des rejets miniers : Nous identifions et gérons l'évacuation des rejets à haute teneur, les transformant en une source de valeur",
-      "Partenariats stratégiques : Nous servons de pont essentiel entre les fournisseurs internationaux et les sociétés minières, garantissant une chaîne d'approvisionnement fluide et fiable",
+      "Conseils en investissement stratégique : Identification et évaluation de projets alignés avec les objectifs à long terme de nos clients, grâce à notre connaissance approfondie du terrain et des réglementations locales",
+      "Structuration de Partenariats : Conception et mise en place de collaborations équilibrées entre investisseurs internationaux et acteurs locaux, garantissant des bénéfices mutuels et une vision commune",
     ],
     reverse: true,
   },
@@ -39,10 +25,23 @@ const serviceSections = [
       "Services de terrassement et d'excavation",
       "Évacuation et gestion de remblais miniers",
       "Location d'équipements lourds",
-      "Maintenance et réparation d'équipements",
       "Support logistique pour opérations minières",
     ],
     reverse: false,
+  },
+  {
+    id: "numerisation",
+    title: "TRANSFORMATION NUMÉRIQUE",
+    image: "/images/matrix-2953869_1280.jpg",
+    alt: "Solutions numériques et technologies",
+    description:
+      "Nous guidons votre entreprise vers l'avenir en modernisant vos processus grâce à des technologies innovantes.",
+    items: [
+      "Digitalisation de documents : Nous numérisons vos archives physiques pour un accès instantané, une recherche simplifiée et une sécurité accrue de vos données",
+      "Développement d'applications web : Nous concevons et développons des applications sur mesure, intuitives et performantes, pour répondre à vos besoins spécifiques (gestion interne, communication, e-commerce, etc.)",
+      "Solutions SaaS (Software as a Service) : Nous proposons des solutions logicielles hébergées qui vous permettent de bénéficier des dernières innovations technologiques sans investissements lourds en infrastructure",
+    ],
+    reverse: true,
   },
   {
     id: "cybersecurite",
@@ -55,7 +54,7 @@ const serviceSections = [
       "Contrôle d'accès basé sur les rôles (RBAC) : Nous concevons et implémentons des systèmes d'authentification et d'autorisation précis, garantissant que chaque utilisateur a un accès strictement limité aux informations nécessaires à sa fonction",
       "Infrastructure sécurisée : Nous vous conseillons sur les meilleures pratiques et les technologies pour sécuriser vos réseaux et vos bases de données contre les menaces",
     ],
-    reverse: true,
+    reverse: false,
   },
 ];
 
